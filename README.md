@@ -1,1 +1,1 @@
-# heg-io.github.io
+# heg.wtf
