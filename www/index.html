@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEG</title>
-    <meta name="description" content="">
+    <title>HEG - Hyper Engineering Group</title>
+    <meta name="description" content="Moving quickly, Staying small, Avoiding over-engineering.">
+    <!-- Favicon -->
+    <link rel="icon" href="logo2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo2.ico" type="image/x-icon">
+    
+    <!-- Google Adsense -->
+    <meta name="google-adsense-account" content="ca-pub-8699046198561974">
 
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://heg.wtf/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="HEG">
-    <meta property="og:description" content="">
-    <meta property="og:image" content="./app/1pick_logo.png">
+    <meta property="og:title" content="HEG - Hyper Engineering Group">
+    <meta property="og:description" content="Moving quickly, Staying small, Avoiding over-engineering.">
+    <meta property="og:image" content="./logo.png">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -19,54 +25,311 @@
     <meta property="twitter:url" content="https://heg.wtf/">
     <meta name="twitter:title" content="HEG">
     <meta name="twitter:description" content="Moving quickly, Staying small, Avoiding over-engineering.">
-    <meta name="twitter:image" content="./app/1pick_logo.png">
+    <meta name="twitter:image" content="./logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg-color: #ffffff;
+            --text-color: #111111;
+            --accent-color: #0066ff;
+            --light-gray: #f7f7f7;
+            --border-color: #e0e0e0;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        header {
+            padding: 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+        }
+        
+        .hero-logo {
+            margin-bottom: 3rem;
+        }
+        
+        .hero-logo img {
+            max-width: 70%; 
+            width: auto;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            color: #555;
+            letter-spacing: -0.5px;
+            font-weight: 400;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #0055d4;
+            transform: translateY(-2px);
+        }
+        
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            display: block;
+            background-color: #fff;
+            padding: 1rem;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .project-description {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent-color);
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+        
+        .project-link:hover {
+            text-decoration: underline;
+        }
+        
+        .arrow-icon {
+            margin-left: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .mission-section {
+            background-color: var(--light-gray);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .mission-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .mission-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        
+        .mission-text {
+            font-size: 1.3rem;
+            color: #444;
+            line-height: 1.7;
+        }
+        
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title, .mission-title {
+                font-size: 1.8rem;
+            }
+            
+            .mission-text {
+                font-size: 1.1rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Logo and Description -->
-        <div class="logo">
-            <img src="logo.png" alt="HEG Logo">
+        <header>
+            <div class="logo-container">
+                <div class="logo-text">HEG</div>
+            </div>
+        </header>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-logo">
+                <img src="logo.png" alt="HEG Logo">
+            </div>
+            <h1>Moving quickly<br>Staying small<br>Avoiding over-engineering</h1>
+     
         </div>
-        <div class="description">
-            <quota>Moving quickly, Staying small, Avoiding over-engineering.<br/> 
-                Ultimate goal is to create a sustainable engineering world that aligns with HEG’s ideals.</quota>
+    </section>
+
+    <section class="mission-section">
+        <div class="container">
+            <div class="mission-container">
+                <h2 class="mission-title">Our Mission</h2>
+                <p class="mission-text">Our ultimate goal is to create a sustainable engineering world that aligns with HEG's ideals.</p>
+            </div>
         </div>
-        
-        <!-- Project List -->
-        <div class="project-list">
-            <div class="project-item">
-                <img src="./1pick_logo.png" alt="App 1" class="project-image">
-                <div class="project-info">
-                    <h3>원픽 - 맛집은 원픽</h3>
-                    <p>Redefining the way you discover Seoul’s best restaurants, solving the challenge of finding great spots.</p>
-                    <a href="https://apple.co/3YCbQUr" class="try-button">Try</a>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Our Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="./1pick_logo.png" alt="원픽" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">원픽 - 맛집은 원픽</h3>
+                        <p class="project-description">Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots.</p>
+                        <a href="https://apple.co/3YCbQUr" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="./runningshoes_logo.png" alt="RunningShoes" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">RunningShoes</h3>
+                        <p class="project-description">Recommend Running Shoes based on your running style.</p>
+                        <a href="https://runningshoes.heg.wtf" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                    </div>
                 </div>
             </div>
-            <div class="project-item">
-                <img src="./runningshoes_logo.png" alt="App 1" class="project-image">
-                <div class="project-info">
-                    <h3>RunningShoes</h3>
-                    <p>Recommend Running Shoes based on your running style.</p>
-                    <a href="https://runningshoes.heg.wtf" class="try-button">Try</a>
-                </div>
-            </div>
-            <!-- <div class="project-item">
-                <img src="app2.png" alt="App 2" class="project-image">
-                <div class="project-info">
-                    <h3>App Name 2</h3>
-                    <p>An app designed to enhance productivity and streamline workflows.</p>
-                    <a href="https://example.com/app2" class="try-button">Try</a>
-                </div>
-            </div> -->
         </div>
-    </div> 
-        <footer class="footer">
-            <p>@2024 HEG. All rights reserved.</p>
-        </footer>
-    </body>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HEG. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8JNGX26HDY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8JNGX26HDY');
+</script>
+
 </body>
 </html>
