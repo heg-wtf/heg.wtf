@@ -28,15 +28,38 @@
     <meta name="twitter:description" content="Moving quickly, Staying small, Avoiding over-engineering.">
     <meta name="twitter:image" content="./logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-bg-color: #ffffff;
-            --text-color: #111111;
-            --accent-color: #0066ff;
-            --light-gray: #f7f7f7;
-            --border-color: #e0e0e0;
+            /* 2025 Silicon Valley Design Studio Colors */
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --quaternary-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-accent: rgba(255, 255, 255, 0.6);
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+            
+            --border-radius: 20px;
+            --border-radius-sm: 12px;
+            --border-radius-lg: 32px;
+            
             --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
         
         * {
@@ -45,315 +68,626 @@
             padding: 0;
         }
         
+        html {
+            scroll-behavior: smooth;
+        }
+        
         body {
-            background-color: var(--main-bg-color);
-            color: var(--text-color);
             font-family: var(--font-primary);
             line-height: 1.6;
             font-weight: 400;
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background: #0f0f23;
+            position: relative;
         }
         
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        /* Dynamic Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(120, 119, 255, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 0% 50%, rgba(120, 255, 119, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(255, 218, 119, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            z-index: -2;
+            animation: gradient-shift 20s ease infinite;
         }
         
-        header {
-            padding: 2rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 35, 0.4);
+            backdrop-filter: blur(60px);
+            z-index: -1;
         }
         
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        @keyframes gradient-shift {
+            0%, 100% { 
+                transform: rotate(0deg) scale(1);
+                filter: hue-rotate(0deg);
+            }
+            33% { 
+                transform: rotate(120deg) scale(1.1);
+                filter: hue-rotate(120deg);
+            }
+            66% { 
+                transform: rotate(240deg) scale(0.9);
+                filter: hue-rotate(240deg);
+            }
         }
         
-        .logo-text {
-            font-size: 1.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+        /* Glassmorphism Components */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: var(--border-radius);
         }
         
+        .glass-intense {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 8px 32px 0 rgba(31, 38, 135, 0.37),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: var(--spacing-md);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: var(--border-radius-lg);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .navbar:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 
+                0 20px 40px 0 rgba(31, 38, 135, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        }
+        
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a8edea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.05em;
+        }
+        
+        /* Hero Section */
         .hero {
-            padding: 6rem 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-md);
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 900px;
+            z-index: 1;
         }
         
         .hero-logo {
-            margin-bottom: 3rem;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
         }
         
         .hero-logo img {
-            max-width: 70%; 
-            width: auto;
-            margin-bottom: 1rem;
+            max-width: 200px;
+            height: auto;
+            filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.3));
+            animation: float 6s ease-in-out infinite;
         }
         
-        h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            color: rgba(255, 255, 255, 0.96);
-            text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.5), 
-                         -1px -1px 1px rgba(0, 0, 0, 0.3),
-                         1px 1px 1px rgba(255, 255, 255, 0.3);
-            
-            padding: 1.5rem;
-            border-radius: 8px;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
         
-        .subtitle {
-            font-size: 1.5rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            color: #555;
-            letter-spacing: -0.5px;
-            font-weight: 400;
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            letter-spacing: -0.05em;
+            background: linear-gradient(135deg, #ffffff, #f093fb, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 300;
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-secondary);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
         }
         
         .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 0.9rem 2rem;
-            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: var(--primary-gradient);
+            color: var(--text-primary);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.2s ease;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: -0.02em;
+            box-shadow: 
+                0 10px 30px rgba(102, 126, 234, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
         }
         
         .cta-button:hover {
-            background-color: #0055d4;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 20px 40px rgba(102, 126, 234, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
         }
         
+        /* Sections */
         .section {
-            padding: 5rem 0;
+            padding: var(--spacing-3xl) var(--spacing-md);
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
         }
         
         .section-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-            letter-spacing: -0.5px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
             text-align: center;
+            margin-bottom: var(--spacing-xl);
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
         
-        .project-grid {
+        /* Mission Section */
+        .mission-section {
+            text-align: center;
+            padding: var(--spacing-3xl) var(--spacing-md);
+        }
+        
+        .mission-card {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mission-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--secondary-gradient);
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .mission-text {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        /* Projects Grid */
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
         }
         
         .project-card {
-            background-color: var(--light-gray);
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .project-card:nth-child(1) { --gradient: var(--primary-gradient); }
+        .project-card:nth-child(2) { --gradient: var(--secondary-gradient); }
+        .project-card:nth-child(3) { --gradient: var(--tertiary-gradient); }
+        .project-card:nth-child(4) { --gradient: var(--quaternary-gradient); }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient);
+            opacity: 0.1;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .project-card:hover::before {
+            opacity: 0.2;
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(31, 38, 135, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
         }
         
         .project-image {
             width: 100%;
-            height: 200px;
+            height: 220px;
             object-fit: contain;
-            display: block;
-            background-color: #fff;
-            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--spacing-md);
+            transition: all 0.3s ease;
         }
         
         .project-content {
-            padding: 1.5rem;
+            padding: var(--spacing-lg);
+            position: relative;
+            z-index: 1;
         }
         
         .project-title {
             font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.8rem;
-            letter-spacing: -0.5px;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
         }
         
         .project-description {
-            color: #555;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
+            color: var(--text-accent);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.5;
         }
         
         .project-link {
             display: inline-flex;
             align-items: center;
-            color: var(--accent-color);
-            font-weight: 500;
+            gap: var(--spacing-xs);
+            color: var(--text-primary);
             text-decoration: none;
+            font-weight: 600;
             font-size: 0.95rem;
+            transition: all 0.3s ease;
         }
         
         .project-link:hover {
-            text-decoration: underline;
+            gap: var(--spacing-sm);
+            color: #4facfe;
         }
         
         .arrow-icon {
-            margin-left: 0.5rem;
-            font-size: 1.1rem;
+            transition: transform 0.3s ease;
         }
         
-        .mission-section {
-            background-color: var(--light-gray);
-            padding: 5rem 0;
+        .project-link:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+        
+        /* Footer */
+        .footer {
             text-align: center;
-        }
-        
-        .mission-container {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .mission-title {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.5px;
-        }
-        
-        .mission-text {
-            font-size: 1.3rem;
-            color: #444;
-            line-height: 1.7;
-        }
-        
-        footer {
-            padding: 3rem 0;
-            text-align: center;
-            color: #777;
-            border-top: 1px solid var(--border-color);
-            margin-top: 3rem;
+            padding: var(--spacing-xl) var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: var(--spacing-3xl);
         }
         
         .footer-text {
+            color: var(--text-accent);
             font-size: 0.9rem;
         }
         
+        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title, .mission-title {
-                font-size: 1.8rem;
-            }
-            
-            .mission-text {
-                font-size: 1.1rem;
+            .navbar {
+                top: var(--spacing-sm);
+                padding: var(--spacing-sm) var(--spacing-md);
             }
             
             .hero {
-                padding: 4rem 0;
+                padding: var(--spacing-2xl) var(--spacing-md);
             }
             
             .section {
-                padding: 3rem 0;
+                padding: var(--spacing-2xl) var(--spacing-md);
             }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-md);
+            }
+            
+            .project-card {
+                margin: 0;
+            }
+        }
+        
+        /* Scroll Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-on-scroll {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Micro Interactions */
+        .interactive-element {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .interactive-element:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-gradient);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <div class="logo-text">HEG</div>
-            </div>
-        </header>
-    </div>
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="logo">HEG</div>
+    </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-logo">
-                <img src="logo.png" alt="HEG Logo">
-            </div>
-            <h1>Moving quickly<br>Staying small<br>Avoiding over-engineering</h1>
-     
+        <div class="hero-content">
+            <h1 class="hero-title">Moving quickly<br>Staying small</h1>
+            <p class="hero-subtitle">We craft digital experiences that matter, building the future with precision and purpose.</p>
         </div>
     </section>
 
+    <!-- Mission Section -->
     <section class="mission-section">
         <div class="container">
-            <div class="mission-container">
-                <h2 class="mission-title">Our Mission</h2>
-                <p class="mission-text">Our ultimate goal is to create a sustainable engineering world that aligns with HEG's ideals.</p>
+            <div class="mission-card glass-intense">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="mission-text">Our ultimate goal is to create a sustainable engineering world that aligns with HEG's ideals. We believe in moving fast, staying lean, and building solutions that truly serve our users.</p>
             </div>
         </div>
     </section>
 
+    <!-- Projects Section -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Our Projects</h2>
-            <div class="project-grid">
-                <div class="project-card">
+            <div class="projects-grid">
+                <div class="project-card glass">
                     <a href="https://apple.co/3YCbQUr">
                         <img src="./1pick_logo.png" alt="원픽" class="project-image">
                     </a>
                     <div class="project-content">
                         <h3 class="project-title">원픽 - 맛집은 원픽</h3>
-                        <p class="project-description">Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots.</p>
-                        <a href="https://apple.co/3YCbQUr" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                        <p class="project-description">Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots with AI-powered recommendations.</p>
+                        <a href="https://apple.co/3YCbQUr" class="project-link">
+                            Experience Now 
+                            <span class="arrow-icon">→</span>
+                        </a>
                     </div>
                 </div>
                 
-                <div class="project-card">
+                <div class="project-card glass">
                     <a href="https://runningshoes.heg.wtf">
                         <img src="./runningshoes_logo.png" alt="RunningShoes" class="project-image">
                     </a>
                     <div class="project-content">
                         <h3 class="project-title">RunningShoes</h3>
-                        <p class="project-description">Recommend Running Shoes based on your running style.</p>
-                        <a href="https://runningshoes.heg.wtf" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                        <p class="project-description">Intelligent running shoe recommendations tailored to your unique running style, gait, and performance goals.</p>
+                        <a href="https://runningshoes.heg.wtf" class="project-link">
+                            Find Your Perfect Fit 
+                            <span class="arrow-icon">→</span>
+                        </a>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card glass">
                     <a href="https://localmap.cc">
                         <img src="./lm-logo.png" alt="lm" class="project-image">
                     </a>
                     <div class="project-content">
-                        <h3 class="project-title">lm - localmap</h3>
-                        <p class="project-description">Share Local map</p>
-                        <a href="https://localmap.cc" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                        <h3 class="project-title">LocalMap</h3>
+                        <p class="project-description">Connect communities through shared local knowledge. Discover hidden gems and share your favorite local spots.</p>
+                        <a href="https://localmap.cc" class="project-link">
+                            Explore Local 
+                            <span class="arrow-icon">→</span>
+                        </a>
                     </div>
                 </div>
-                <div class="project-card">
+
+                <div class="project-card glass">
                     <a href="https://apps.apple.com/kr/app/driverpub/id6744569013">
                         <img src="./driverpub_logo.png" alt="driverpub" class="project-image">
                     </a>
                     <div class="project-content">
-                        <h3 class="project-title">driverpub</h3>
-                        <p class="project-description">Recommend driving courses/places/music for your.</p>
-                        <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-link">Try it now <span class="arrow-icon">→</span></a>
+                        <h3 class="project-title">DriverPub</h3>
+                        <p class="project-description">Elevate your driving experience with curated routes, scenic destinations, and the perfect soundtrack for every journey.</p>
+                        <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-link">
+                            Start Your Journey 
+                            <span class="arrow-icon">→</span>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
         <div class="container">
-            <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HEG. All rights reserved.</p>
+            <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HEG. Crafted with precision and purpose.</p>
         </div>
     </footer>
+
+    <!-- Enhanced Interactivity Script -->
+    <script>
+        // Add scroll animation observers
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-on-scroll');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Observe mission card
+        const missionCard = document.querySelector('.mission-card');
+        if (missionCard) {
+            observer.observe(missionCard);
+        }
+
+        // Add enhanced hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.03)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Smooth scroll for better navigation experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add dynamic navbar behavior
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scrolling down
+                navbar.style.transform = 'translateX(-50%) translateY(-100%)';
+            } else {
+                // Scrolling up
+                navbar.style.transform = 'translateX(-50%) translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Add parallax effect to hero logo
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-logo img');
+            const speed = scrolled * 0.5;
+            
+            if (parallax) {
+                parallax.style.transform = `translateY(${speed}px)`;
+            }
+        });
+    </script>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JNGX26HDY"></script>
 <script>
