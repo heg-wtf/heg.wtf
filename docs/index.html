@@ -301,7 +301,7 @@
         /* Mission Section */
         .mission-section {
             text-align: center;
-            padding: var(--spacing-3xl) var(--spacing-md);
+            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-3xl) var(--spacing-md);
         }
         
         .mission-card {
@@ -384,6 +384,7 @@
             background: rgba(255, 255, 255, 0.05);
             padding: var(--spacing-md);
             transition: all 0.3s ease;
+            display: none;
         }
         
         .project-content {
@@ -541,61 +542,43 @@
         <div class="container">
             <h2 class="section-title">Our Projects</h2>
             <div class="projects-grid">
-                <div class="project-card glass">
-                    <a href="https://apple.co/3YCbQUr">
-                        <img src="./1pick_logo.png" alt="원픽" class="project-image">
-                    </a>
+                <a href="https://apple.co/3YCbQUr" class="project-card glass" style="text-decoration: none; color: inherit;">
+                    <img src="./1pick_logo.png" alt="원픽" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">원픽 - 맛집은 원픽</h3>
                         <p class="project-description">Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots with AI-powered recommendations.</p>
-                        <a href="https://apple.co/3YCbQUr" class="project-link">
+                        <div class="project-link">
                             Experience Now 
                             <span class="arrow-icon">→</span>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
                 
-                <div class="project-card glass">
-                    <a href="https://runningshoes.heg.wtf">
-                        <img src="./runningshoes_logo.png" alt="RunningShoes" class="project-image">
-                    </a>
-                    <div class="project-content">
-                        <h3 class="project-title">RunningShoes</h3>
-                        <p class="project-description">Intelligent running shoe recommendations tailored to your unique running style, gait, and performance goals.</p>
-                        <a href="https://runningshoes.heg.wtf" class="project-link">
-                            Find Your Perfect Fit 
-                            <span class="arrow-icon">→</span>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="project-card glass">
-                    <a href="https://localmap.cc">
-                        <img src="./lm-logo.png" alt="lm" class="project-image">
-                    </a>
+
+                <a href="https://localmap.cc" class="project-card glass" style="text-decoration: none; color: inherit;">
+                    <img src="./lm-logo.png" alt="lm" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">LocalMap</h3>
                         <p class="project-description">Connect communities through shared local knowledge. Discover hidden gems and share your favorite local spots.</p>
-                        <a href="https://localmap.cc" class="project-link">
+                        <div class="project-link">
                             Explore Local 
                             <span class="arrow-icon">→</span>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="project-card glass">
-                    <a href="https://apps.apple.com/kr/app/driverpub/id6744569013">
-                        <img src="./driverpub_logo.png" alt="driverpub" class="project-image">
-                    </a>
+                <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-card glass" style="text-decoration: none; color: inherit;">
+                    <img src="./driverpub.png" alt="driverpub" class="project-image">
                     <div class="project-content">
                         <h3 class="project-title">DriverPub</h3>
                         <p class="project-description">Elevate your driving experience with curated routes, scenic destinations, and the perfect soundtrack for every journey.</p>
-                        <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-link">
+                        <div class="project-link">
                             Start Your Journey 
                             <span class="arrow-icon">→</span>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
