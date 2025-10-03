@@ -28,38 +28,76 @@
     <meta name="twitter:description" content="Moving quickly, Staying small, Avoiding over-engineering.">
     <meta name="twitter:image" content="./logo.png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 2025 Silicon Valley Design Studio Colors */
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --quaternary-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            /* Clean Design System */
+            --color-white: #ffffff;
+            --color-black: #000000;
+            --color-gray-50: #f9fafb;
+            --color-gray-100: #f3f4f6;
+            --color-gray-200: #e5e7eb;
+            --color-gray-300: #d1d5db;
+            --color-gray-400: #9ca3af;
+            --color-gray-500: #6b7280;
+            --color-gray-600: #4b5563;
+            --color-gray-700: #374151;
+            --color-gray-800: #1f2937;
+            --color-gray-900: #111827;
             
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.18);
-            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            --color-primary: #3b82f6;
+            --color-primary-light: #60a5fa;
+            --color-secondary: #8b5cf6;
+            --color-accent: #06b6d4;
             
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.8);
-            --text-accent: rgba(255, 255, 255, 0.6);
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --spacing-24: 6rem;
+            --spacing-32: 8rem;
             
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
-            --spacing-2xl: 4rem;
-            --spacing-3xl: 6rem;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            --font-size-7xl: 4.5rem;
             
-            --border-radius: 20px;
-            --border-radius-sm: 12px;
-            --border-radius-lg: 32px;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
             
-            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
+            --line-height-tight: 1.25;
+            --line-height-snug: 1.375;
+            --line-height-normal: 1.5;
+            --line-height-relaxed: 1.625;
+            --line-height-loose: 2;
+            
+            --border-radius-sm: 0.375rem;
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            --border-radius-2xl: 1.5rem;
+            
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
         
         * {
@@ -70,411 +108,326 @@
         
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         body {
-            font-family: var(--font-primary);
-            line-height: 1.6;
-            font-weight: 400;
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-gray-900);
+            background-color: var(--color-white);
             overflow-x: hidden;
-            background: #0f0f23;
-            position: relative;
-        }
-        
-        /* Dynamic Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(120, 119, 255, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 0% 50%, rgba(120, 255, 119, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 50%, rgba(255, 218, 119, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-            z-index: -2;
-            animation: gradient-shift 20s ease infinite;
-        }
-        
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 15, 35, 0.4);
-            backdrop-filter: blur(60px);
-            z-index: -1;
-        }
-        
-        @keyframes gradient-shift {
-            0%, 100% { 
-                transform: rotate(0deg) scale(1);
-                filter: hue-rotate(0deg);
-            }
-            33% { 
-                transform: rotate(120deg) scale(1.1);
-                filter: hue-rotate(120deg);
-            }
-            66% { 
-                transform: rotate(240deg) scale(0.9);
-                filter: hue-rotate(240deg);
-            }
-        }
-        
-        /* Glassmorphism Components */
-        .glass {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: var(--border-radius);
-        }
-        
-        .glass-intense {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 
-                0 8px 32px 0 rgba(31, 38, 135, 0.37),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
         }
         
         /* Navigation */
-        .navbar {
+        .nav {
             position: fixed;
-            top: var(--spacing-md);
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            padding: var(--spacing-sm) var(--spacing-lg);
-            border-radius: var(--border-radius-lg);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-gray-200);
+            transition: all 0.3s ease;
         }
         
-        .navbar:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 
-                0 20px 40px 0 rgba(31, 38, 135, 0.5),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-4) var(--spacing-6);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #a8edea);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.05em;
+        .nav-logo {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-black);
+            text-decoration: none;
+            letter-spacing: -0.025em;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        
+        .nav-subtitle {
+            font-size: 10px;
+            font-weight: var(--font-weight-medium);
+            color: var(--color-gray-500);
+            letter-spacing: 0.05em;
+            margin-top: 1px;
+            text-transform: uppercase;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-8);
+        }
+        
+        .nav-link {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-gray-600);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-gray-900);
         }
         
         /* Hero Section */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: var(--spacing-32) var(--spacing-6) var(--spacing-24);
             text-align: center;
-            padding: var(--spacing-3xl) var(--spacing-md);
-            position: relative;
+            background: linear-gradient(135deg, var(--color-gray-50) 0%, var(--color-white) 100%);
         }
         
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
-        }
-        
-        .hero-logo {
-            margin-bottom: var(--spacing-xl);
-            position: relative;
-        }
-        
-        .hero-logo img {
-            max-width: 200px;
-            height: auto;
-            filter: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.3));
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .hero-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: var(--spacing-md);
-            letter-spacing: -0.05em;
-            background: linear-gradient(135deg, #ffffff, #f093fb, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            font-size: clamp(var(--font-size-5xl), 8vw, var(--font-size-7xl));
+            font-weight: var(--font-weight-extrabold);
+            line-height: var(--line-height-tight);
+            color: var(--color-black);
+            margin-bottom: var(--spacing-6);
+            letter-spacing: -0.025em;
         }
         
         .hero-subtitle {
-            font-size: clamp(1.25rem, 3vw, 2rem);
-            font-weight: 300;
-            margin-bottom: var(--spacing-xl);
-            color: var(--text-secondary);
-            line-height: 1.4;
-            letter-spacing: -0.02em;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-gray-600);
+            margin-bottom: var(--spacing-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .cta-button {
+        .hero-cta {
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            padding: var(--spacing-md) var(--spacing-xl);
-            background: var(--primary-gradient);
-            color: var(--text-primary);
+            gap: var(--spacing-2);
+            padding: var(--spacing-3) var(--spacing-6);
+            background-color: var(--color-black);
+            color: var(--color-white);
             text-decoration: none;
             border-radius: var(--border-radius-lg);
-            font-weight: 600;
-            font-size: 1.1rem;
-            letter-spacing: -0.02em;
-            box-shadow: 
-                0 10px 30px rgba(102, 126, 234, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            transition: all 0.2s ease;
         }
         
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 
-                0 20px 40px rgba(102, 126, 234, 0.6),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-        }
-        
-        /* Sections */
-        .section {
-            padding: var(--spacing-3xl) var(--spacing-md);
-            position: relative;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-        
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #ffffff, #f093fb);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .hero-cta:hover {
+            background-color: var(--color-gray-800);
+            transform: translateY(-1px);
         }
         
         /* Mission Section */
-        .mission-section {
-            text-align: center;
-            padding: var(--spacing-lg) var(--spacing-md) var(--spacing-3xl) var(--spacing-md);
+        .mission {
+            padding: var(--spacing-24) var(--spacing-6);
+            background-color: var(--color-white);
         }
         
-        .mission-card {
+        .mission-container {
             max-width: 800px;
             margin: 0 auto;
-            padding: var(--spacing-xl);
-            border-radius: var(--border-radius-lg);
-            position: relative;
-            overflow: hidden;
+            text-align: center;
         }
         
-        .mission-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--secondary-gradient);
-            opacity: 0.1;
-            z-index: -1;
+        .mission-title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            line-height: var(--line-height-tight);
+            color: var(--color-black);
+            margin-bottom: var(--spacing-8);
+            letter-spacing: -0.025em;
         }
         
         .mission-text {
-            font-size: clamp(1.25rem, 3vw, 1.75rem);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-weight: 300;
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-normal);
+            line-height: var(--line-height-relaxed);
+            color: var(--color-gray-600);
         }
         
-        /* Projects Grid */
+        /* Projects Section */
+        .projects {
+            padding: var(--spacing-24) var(--spacing-6);
+            background-color: var(--color-gray-50);
+        }
+        
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .projects-title {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            line-height: var(--line-height-tight);
+            color: var(--color-black);
+            margin-bottom: var(--spacing-16);
+            text-align: center;
+            letter-spacing: -0.025em;
+        }
+        
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: var(--spacing-lg);
-            margin-top: var(--spacing-xl);
+            gap: var(--spacing-8);
         }
         
         .project-card {
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .project-card:nth-child(1) { --gradient: var(--primary-gradient); }
-        .project-card:nth-child(2) { --gradient: var(--secondary-gradient); }
-        .project-card:nth-child(3) { --gradient: var(--tertiary-gradient); }
-        .project-card:nth-child(4) { --gradient: var(--quaternary-gradient); }
-        .project-card:nth-child(5) { --gradient: linear-gradient(135deg, #667eea 0%, #f093fb 100%); }
-        
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient);
-            opacity: 0.1;
-            transition: opacity 0.3s ease;
-            z-index: 0;
-        }
-        
-        .project-card:hover::before {
-            opacity: 0.2;
+            background-color: var(--color-white);
+            border-radius: var(--border-radius-xl);
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-gray-200);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .project-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 
-                0 25px 50px rgba(31, 38, 135, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-gray-300);
         }
         
         .project-image {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: contain;
-            background: rgba(255, 255, 255, 0.05);
-            padding: var(--spacing-md);
-            transition: all 0.3s ease;
-            display: none;
-        }
-        
-        .project-content {
-            padding: var(--spacing-lg);
-            position: relative;
-            z-index: 1;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-6);
+            background-color: var(--color-white);
+            padding: var(--spacing-4);
         }
         
         .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-black);
+            margin-bottom: var(--spacing-3);
+            line-height: var(--line-height-snug);
         }
         
         .project-description {
-            color: var(--text-accent);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.5;
+            font-size: var(--font-size-base);
+            color: var(--color-gray-600);
+            line-height: var(--line-height-relaxed);
+            margin-bottom: var(--spacing-6);
+            flex-grow: 1;
         }
         
         .project-link {
             display: inline-flex;
             align-items: center;
-            gap: var(--spacing-xs);
-            color: var(--text-primary);
+            gap: var(--spacing-2);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-primary);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            margin-top: auto;
         }
         
         .project-link:hover {
-            gap: var(--spacing-sm);
-            color: #4facfe;
+            gap: var(--spacing-3);
         }
         
-        .arrow-icon {
-            transition: transform 0.3s ease;
+        .project-link-arrow {
+            transition: transform 0.2s ease;
         }
         
-        .project-link:hover .arrow-icon {
+        .project-link:hover .project-link-arrow {
             transform: translateX(4px);
         }
         
         /* Footer */
         .footer {
+            padding: var(--spacing-16) var(--spacing-6);
+            background-color: var(--color-white);
+            border-top: 1px solid var(--color-gray-200);
             text-align: center;
-            padding: var(--spacing-xl) var(--spacing-md);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: var(--spacing-3xl);
+        }
+        
+        .footer-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .footer-text {
-            color: var(--text-accent);
-            font-size: 0.9rem;
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .footer-link {
+            color: var(--color-gray-600);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--color-black);
         }
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .navbar {
-                top: var(--spacing-sm);
-                padding: var(--spacing-sm) var(--spacing-md);
+            .nav-container {
+                padding: var(--spacing-3) var(--spacing-4);
+            }
+            
+            .nav-menu {
+                display: none;
             }
             
             .hero {
-                padding: var(--spacing-2xl) var(--spacing-md);
+                padding: var(--spacing-24) var(--spacing-4) var(--spacing-16);
             }
             
-            .section {
-                padding: var(--spacing-2xl) var(--spacing-md);
+            .mission {
+                padding: var(--spacing-16) var(--spacing-4);
+            }
+            
+            .projects {
+                padding: var(--spacing-16) var(--spacing-4);
             }
             
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: var(--spacing-md);
+                gap: var(--spacing-6);
             }
             
             .project-card {
-                margin: 0;
+                padding: var(--spacing-6);
+            }
+            
+            .footer {
+                padding: var(--spacing-12) var(--spacing-4);
             }
         }
         
-        /* Scroll Animations */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -482,113 +435,128 @@
             }
         }
         
-        .animate-on-scroll {
-            animation: fadeInUp 0.8s ease-out forwards;
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
         }
         
-        /* Micro Interactions */
-        .interactive-element {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
         }
         
-        .interactive-element:hover {
-            transform: scale(1.05);
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-gradient);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--secondary-gradient);
+        /* Focus states for accessibility */
+        .hero-cta:focus,
+        .project-card:focus,
+        .nav-link:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar glass">
-        <div class="logo">HEG</div>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                HEG
+                <span class="nav-subtitle">HYPERENGINEERINGGROUP</span>
+            </a>
+            <div class="nav-menu">
+                <a href="#mission" class="nav-link">Mission</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="https://bit.heg.wtf" class="nav-link" style="color: #667eea;">#buildinpublic</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Moving quickly<br>Staying small</h1>
-            <p class="hero-subtitle">We craft digital experiences that matter, building the future with precision and purpose.</p>
+        <div class="hero-container">
+            <h1 class="hero-title animate-fade-in-up">
+                Moving quickly<br>
+                Staying small
+            </h1>
+            <p class="hero-subtitle animate-fade-in-up">
+                We craft digital experiences that matter, building the future with precision and purpose.
+            </p>
+            <a href="#projects" class="hero-cta animate-fade-in-up">
+                Explore our work
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+            </a>
         </div>
     </section>
 
     <!-- Mission Section -->
-    <section class="mission-section">
-        <div class="container">
-            <div class="mission-card glass-intense">
-                <h2 class="section-title">Our Mission</h2>
-                <p class="mission-text">Our ultimate goal is to create a sustainable engineering world that aligns with HEG's ideals. We believe in moving fast, staying lean, and building solutions that truly serve our users.</p>
-            </div>
+    <section id="mission" class="mission">
+        <div class="mission-container">
+            <h2 class="mission-title">Our Mission</h2>
+            <p class="mission-text">
+                Our ultimate goal is to create a sustainable engineering world that aligns with HEG's ideals. 
+                We believe in moving fast, staying lean, and building solutions that truly serve our users.
+            </p>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Our Projects</h2>
+    <section id="projects" class="projects">
+        <div class="projects-container">
+            <h2 class="projects-title">Our Projects</h2>
             <div class="projects-grid">
-                <a href="https://apple.co/3YCbQUr" class="project-card glass" style="text-decoration: none; color: inherit;">
+                <a href="https://apple.co/3YCbQUr" class="project-card">
                     <img src="./1pick_logo.png" alt="원픽" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">원픽 - 맛집은 원픽</h3>
-                        <p class="project-description">Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots with AI-powered recommendations.</p>
-                        <div class="project-link">
-                            Experience Now 
-                            <span class="arrow-icon">→</span>
-                        </div>
-                    </div>
-                </a>
-                
-
-
-                <a href="https://localmap.cc" class="project-card glass" style="text-decoration: none; color: inherit;">
-                    <img src="./lm-logo.png" alt="lm" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">동네지도</h3>
-                        <p class="project-description">네이버지도에는 없는 진짜 동네지도</p>
-                        <div class="project-link">
-                            Explore Local 
-                            <span class="arrow-icon">→</span>
-                        </div>
+                    <h3 class="project-title">1Pick - Restaurant Discovery</h3>
+                    <p class="project-description">
+                        Redefining the way you discover Seoul's best restaurants, solving the challenge of finding great spots with AI-powered recommendations.
+                    </p>
+                    <div class="project-link">
+                        Experience Now
+                        <svg class="project-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
                     </div>
                 </a>
 
-                <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-card glass" style="text-decoration: none; color: inherit;">
-                    <img src="./driverpub.png" alt="driverpub" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">드라이버펍</h3>
-                        <p class="project-description">자동차 매니아를 위한 단 하나의 드라이브 코스 추천 서비스 🚗 </p>
-                        <div class="project-link">
-                            Start Your Journey 
-                            <span class="arrow-icon">→</span>
-                        </div>
+                <a href="https://localmap.cc" class="project-card">
+                    <img src="./localmap.png" alt="동네지도" class="project-image">
+                    <h3 class="project-title">LocalMap - 동네지도</h3>
+                    <p class="project-description">
+                        The real neighborhood map that Naver Maps doesn't have - discover authentic local spots and hidden gems in your area.
+                    </p>
+                    <div class="project-link">
+                        Explore Local
+                        <svg class="project-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
                     </div>
                 </a>
 
-                <a href="https://tools.heg.wtf" class="project-card glass" style="text-decoration: none; color: inherit;">
-                    <div class="project-content">
-                        <h3 class="project-title">HEG Tools</h3>
-                        <p class="project-description">A comprehensive collection of useful web tools designed to enhance productivity and streamline your workflow. From utilities to converters, everything you need in one place.</p>
-                        <div class="project-link">
-                            Explore Tools 
-                            <span class="arrow-icon">→</span>
-                        </div>
+                <a href="https://apps.apple.com/kr/app/driverpub/id6744569013" class="project-card">
+                    <img src="./driverpub.png" alt="드라이버펍" class="project-image">
+                    <h3 class="project-title">DriverPub - 드라이브코스 추천</h3>
+                    <p class="project-description">
+                        The ultimate driving course recommendation service for car enthusiasts - discover scenic routes and perfect driving experiences 🚗
+                    </p>
+                    <div class="project-link">
+                        Start Your Journey
+                        <svg class="project-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </div>
+                </a>
+
+                <a href="https://tools.heg.wtf" class="project-card">
+                    <img src="./tools.png" alt="tools" class="project-image">
+                    <h3 class="project-title">Tools</h3>
+                    <p class="project-description">
+                        A comprehensive collection of useful web tools designed to enhance productivity and streamline your workflow. From utilities to converters, everything you need in one place.
+                    </p>
+                    <div class="project-link">
+                        Explore Tools
+                        <svg class="project-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
                     </div>
                 </a>
             </div>
@@ -597,51 +565,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p class="footer-text">© <script>document.write(new Date().getFullYear())</script> HEG. Crafted with precision and purpose.</p>
-            <p class="footer-text"> story here 👉 <a href="https://bit.heg.wtf" style="color: #fff;">bit.heg.wtf</a></p>
+        <div class="footer-container">
+            <p class="footer-text">
+                © <script>document.write(new Date().getFullYear())</script> HEG. Crafted with precision and purpose.
+            </p>
+            <p class="footer-text">
+                <span style="color: #667eea;">#buildinpublic</span> here 👉 <a href="https://bit.heg.wtf" class="footer-link">bit.heg.wtf</a>
+            </p>
         </div>
     </footer>
 
-    <!-- Enhanced Interactivity Script -->
+    <!-- JavaScript -->
     <script>
-        // Add scroll animation observers
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-on-scroll');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Observe mission card
-        const missionCard = document.querySelector('.mission-card');
-        if (missionCard) {
-            observer.observe(missionCard);
-        }
-
-        // Add enhanced hover effects for project cards
-        document.querySelectorAll('.project-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-12px) scale(1.03)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Smooth scroll for better navigation experience
+        // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -655,44 +591,49 @@
             });
         });
 
-        // Add dynamic navbar behavior
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.project-card, .mission-title, .mission-text').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
         let lastScrollTop = 0;
-        const navbar = document.querySelector('.navbar');
+        const navbar = document.querySelector('.nav');
         
         window.addEventListener('scroll', () => {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
             if (scrollTop > lastScrollTop && scrollTop > 100) {
-                // Scrolling down
-                navbar.style.transform = 'translateX(-50%) translateY(-100%)';
+                navbar.style.transform = 'translateY(-100%)';
             } else {
-                // Scrolling up
-                navbar.style.transform = 'translateX(-50%) translateY(0)';
+                navbar.style.transform = 'translateY(0)';
             }
             
             lastScrollTop = scrollTop;
         });
-
-        // Add parallax effect to hero logo
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelector('.hero-logo img');
-            const speed = scrolled * 0.5;
-            
-            if (parallax) {
-                parallax.style.transform = `translateY(${speed}px)`;
-            }
-        });
     </script>
+
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8JNGX26HDY"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-8JNGX26HDY');
-</script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8JNGX26HDY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-8JNGX26HDY');
+    </script>
 </body>
 </html>
