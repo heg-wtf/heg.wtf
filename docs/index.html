@@ -307,6 +307,29 @@
             box-shadow: var(--shadow-lg);
             border-color: var(--color-gray-300);
         }
+
+        .project-card.deprecated {
+            opacity: 0.6;
+            position: relative;
+        }
+
+        .project-card.deprecated:hover {
+            opacity: 0.8;
+        }
+
+        .deprecated-badge {
+            position: absolute;
+            top: var(--spacing-4);
+            right: var(--spacing-4);
+            background-color: var(--color-gray-500);
+            color: var(--color-white);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: var(--border-radius-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
         
         .project-image {
             width: 100%;
@@ -504,7 +527,8 @@
         <div class="projects-container">
             <h2 class="projects-title">Our Projects</h2>
             <div class="projects-grid">
-                <a href="https://apple.co/3YCbQUr" class="project-card">
+                <a href="https://apple.co/3YCbQUr" class="project-card deprecated">
+                    <span class="deprecated-badge">Deprecated</span>
                     <img src="./1pick_logo.png" alt="원픽" class="project-image">
                     <h3 class="project-title">1Pick - Restaurant Discovery</h3>
                     <p class="project-description">
