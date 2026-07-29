@@ -40,82 +40,44 @@
     />
     <meta name="twitter:image" content="./logo.png" />
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
     <style>
       :root {
-        /* Clean Design System */
-        --color-white: #ffffff;
-        --color-black: #000000;
-        --color-gray-50: #f9fafb;
-        --color-gray-100: #f3f4f6;
-        --color-gray-200: #e5e7eb;
-        --color-gray-300: #d1d5db;
-        --color-gray-400: #9ca3af;
-        --color-gray-500: #6b7280;
-        --color-gray-600: #4b5563;
-        --color-gray-700: #374151;
-        --color-gray-800: #1f2937;
-        --color-gray-900: #111827;
-
-        --color-primary: #3b82f6;
-        --color-primary-light: #60a5fa;
-        --color-secondary: #8b5cf6;
-        --color-accent: #06b6d4;
-
-        --spacing-1: 0.25rem;
-        --spacing-2: 0.5rem;
-        --spacing-3: 0.75rem;
-        --spacing-4: 1rem;
-        --spacing-6: 1.5rem;
-        --spacing-8: 2rem;
-        --spacing-12: 3rem;
-        --spacing-16: 4rem;
-        --spacing-20: 5rem;
-        --spacing-24: 6rem;
-        --spacing-32: 8rem;
-
-        --font-size-xs: 0.75rem;
-        --font-size-sm: 0.875rem;
-        --font-size-base: 1rem;
-        --font-size-lg: 1.125rem;
-        --font-size-xl: 1.25rem;
-        --font-size-2xl: 1.5rem;
-        --font-size-3xl: 1.875rem;
-        --font-size-4xl: 2.25rem;
-        --font-size-5xl: 3rem;
-        --font-size-6xl: 3.75rem;
-        --font-size-7xl: 4.5rem;
-
-        --font-weight-light: 300;
-        --font-weight-normal: 400;
-        --font-weight-medium: 500;
-        --font-weight-semibold: 600;
-        --font-weight-bold: 700;
-        --font-weight-extrabold: 800;
-
-        --line-height-tight: 1.25;
-        --line-height-snug: 1.375;
-        --line-height-normal: 1.5;
-        --line-height-relaxed: 1.625;
-        --line-height-loose: 2;
-
-        --border-radius-sm: 0.375rem;
-        --border-radius: 0.5rem;
-        --border-radius-lg: 0.75rem;
-        --border-radius-xl: 1rem;
-        --border-radius-2xl: 1.5rem;
-
-        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        --shadow-md:
-          0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        --shadow-lg:
+        --bg: #ffffff;
+        --bg-alt: #f9fafb;
+        --bg-muted: #f3f4f6;
+        --surface: #ffffff;
+        --ink: #000000;
+        --ink-body: #111827;
+        --ink-2: #4b5563;
+        --ink-3: #9ca3af;
+        --ink-footer: #6b7280;
+        --line: #e5e7eb;
+        --line-strong: #d1d5db;
+        --accent: #3b82f6;
+        --accent-build: #667eea;
+        --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        --shadow-lift:
           0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --shadow-xl:
-          0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #111827;
+          --bg-alt: #0d1220;
+          --bg-muted: #1f2937;
+          --surface: #1f2937;
+          --ink: #ffffff;
+          --ink-body: #f3f4f6;
+          --ink-2: #9ca3af;
+          --ink-3: #6b7280;
+          --ink-footer: #9ca3af;
+          --line: #374151;
+          --line-strong: #4b5563;
+          --accent: #60a5fa;
+          --accent-build: #818cf8;
+          --shadow-card: none;
+          --shadow-lift: 0 12px 24px -8px rgb(0 0 0 / 0.5);
+        }
       }
 
       * {
@@ -132,362 +94,467 @@
 
       body {
         font-family:
-          "Inter",
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
-        color: var(--color-gray-900);
-        background-color: var(--color-white);
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter",
+          "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--ink-body);
+        background-color: var(--bg);
         overflow-x: hidden;
       }
 
-      /* Navigation */
+      .mono {
+        font-family:
+          ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Code", Menlo,
+          monospace;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      /* ---------- Navigation ---------- */
       .nav {
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
         z-index: 50;
-        background: rgba(255, 255, 255, 0.8);
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
         backdrop-filter: blur(12px);
-        border-bottom: 1px solid var(--color-gray-200);
-        transition: all 0.3s ease;
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
       }
 
       .nav-container {
-        max-width: 1200px;
+        max-width: 1080px;
         margin: 0 auto;
-        padding: var(--spacing-4) var(--spacing-6);
+        padding: 0.875rem 1.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
 
       .nav-logo {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-bold);
-        color: var(--color-black);
         text-decoration: none;
-        letter-spacing: -0.025em;
+        color: var(--ink);
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
         line-height: 1;
       }
 
-      .nav-subtitle {
-        font-size: 10px;
-        font-weight: var(--font-weight-medium);
-        color: var(--color-gray-500);
-        letter-spacing: 0.05em;
-        margin-top: 1px;
+      .nav-logo-mark {
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-logo-sub {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 9px;
+        color: var(--ink-3);
+        letter-spacing: 0.14em;
+        margin-top: 3px;
         text-transform: uppercase;
       }
 
       .nav-menu {
         display: flex;
         align-items: center;
-        gap: var(--spacing-8);
+        gap: 1.75rem;
       }
 
       .nav-link {
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
-        color: var(--color-gray-600);
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ink-2);
         text-decoration: none;
-        transition: color 0.2s ease;
+        transition: color 0.15s ease;
       }
 
       .nav-link:hover {
-        color: var(--color-gray-900);
+        color: var(--ink);
       }
 
-      /* Hero Section */
+      .nav-link.build {
+        color: var(--accent-build);
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.8125rem;
+      }
+
+      /* ---------- Hero ---------- */
       .hero {
-        padding: var(--spacing-32) var(--spacing-6) var(--spacing-24);
-        text-align: center;
-        background: linear-gradient(
-          135deg,
-          var(--color-gray-50) 0%,
-          var(--color-white) 100%
-        );
+        padding: 6.5rem 1.5rem 5rem;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%);
       }
 
       .hero-container {
-        max-width: 800px;
+        max-width: 1080px;
         margin: 0 auto;
       }
 
+      .hero-eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.5rem;
+      }
+
       .hero-title {
-        font-size: clamp(var(--font-size-5xl), 8vw, var(--font-size-7xl));
-        font-weight: var(--font-weight-extrabold);
-        line-height: var(--line-height-tight);
-        color: var(--color-black);
-        margin-bottom: var(--spacing-6);
-        letter-spacing: -0.025em;
+        font-size: clamp(2.5rem, 7.5vw, 4.75rem);
+        font-weight: 800;
+        line-height: 1.06;
+        letter-spacing: -0.035em;
+        color: var(--ink);
+        margin-bottom: 1.75rem;
+      }
+
+      .hero-title .accent {
+        color: var(--accent);
       }
 
       .hero-subtitle {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-normal);
-        line-height: var(--line-height-relaxed);
-        color: var(--color-gray-600);
-        margin-bottom: var(--spacing-8);
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+        font-size: 1.125rem;
+        color: var(--ink-2);
+        max-width: 34rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        flex-wrap: wrap;
+        margin-bottom: 3.5rem;
       }
 
       .hero-cta {
         display: inline-flex;
         align-items: center;
-        gap: var(--spacing-2);
-        padding: var(--spacing-3) var(--spacing-6);
-        background-color: var(--color-black);
-        color: var(--color-white);
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background-color: var(--ink);
+        color: var(--bg);
         text-decoration: none;
-        border-radius: var(--border-radius-lg);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
-        transition: all 0.2s ease;
+        border-radius: 0.625rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition:
+          transform 0.15s ease,
+          opacity 0.15s ease;
       }
 
       .hero-cta:hover {
-        background-color: var(--color-gray-800);
         transform: translateY(-1px);
+        opacity: 0.9;
       }
 
-      /* Mission Section */
-      .mission {
-        padding: var(--spacing-24) var(--spacing-6);
-        background-color: var(--color-white);
+      .hero-cta-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        color: var(--accent-build);
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
       }
 
-      .mission-container {
-        max-width: 800px;
+      .hero-cta-secondary:hover {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--line);
+        padding-top: 1.5rem;
+      }
+
+      .hero-stat {
+        padding-right: 2.5rem;
+        margin-right: 2.5rem;
+        border-right: 1px solid var(--line);
+      }
+
+      .hero-stat:last-child {
+        border-right: none;
+        margin-right: 0;
+        padding-right: 0;
+      }
+
+      .hero-stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1.2;
+      }
+
+      .hero-stat-label {
+        font-size: 0.6875rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        margin-top: 0.25rem;
+      }
+
+      /* ---------- Sections ---------- */
+      .section {
+        padding: 4.5rem 1.5rem;
+      }
+
+      .section-container {
+        max-width: 1080px;
         margin: 0 auto;
-        text-align: center;
       }
 
-      .mission-title {
-        font-size: var(--font-size-4xl);
-        font-weight: var(--font-weight-bold);
-        line-height: var(--line-height-tight);
-        color: var(--color-black);
-        margin-bottom: var(--spacing-8);
-        letter-spacing: -0.025em;
+      .section-eyebrow {
+        font-size: 0.75rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.75rem;
       }
 
-      .mission-text {
-        font-size: var(--font-size-lg);
-        font-weight: var(--font-weight-normal);
-        line-height: var(--line-height-relaxed);
-        color: var(--color-gray-600);
+      .section-title {
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        margin-bottom: 2.5rem;
       }
 
-      /* Projects Section */
+      /* ---------- Project cards ---------- */
       .projects {
-        padding: var(--spacing-24) var(--spacing-6);
-        background-color: var(--color-gray-50);
-      }
-
-      .projects-container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .projects-title {
-        font-size: var(--font-size-4xl);
-        font-weight: var(--font-weight-bold);
-        line-height: var(--line-height-tight);
-        color: var(--color-black);
-        margin-bottom: var(--spacing-16);
-        text-align: center;
-        letter-spacing: -0.025em;
+        background: var(--bg-alt);
       }
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: var(--spacing-8);
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1rem;
+        counter-reset: project;
       }
 
       .project-card {
-        background-color: var(--color-white);
-        border-radius: var(--border-radius-xl);
-        padding: var(--spacing-8);
-        box-shadow: var(--shadow-sm);
-        border: 1px solid var(--color-gray-200);
-        transition: all 0.3s ease;
+        counter-increment: project;
+        position: relative;
+        display: flex;
+        gap: 1.125rem;
+        padding: 1.375rem;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 1rem;
         text-decoration: none;
         color: inherit;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+        box-shadow: var(--shadow-card);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease,
+          border-color 0.18s ease;
+      }
+
+      .project-card::before {
+        content: counter(project, decimal-leading-zero);
+        position: absolute;
+        top: 1rem;
+        right: 1.125rem;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.6875rem;
+        color: var(--ink-3);
+        letter-spacing: 0.08em;
       }
 
       .project-card:hover {
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-lg);
-        border-color: var(--color-gray-300);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lift);
+        border-color: var(--line-strong);
       }
 
-      .project-card.deprecated {
-        background-color: var(--color-gray-100);
-        opacity: 0.7;
-        position: relative;
-        cursor: default;
-        pointer-events: none;
-        max-width: 400px;
+      .project-icon {
+        flex-shrink: 0;
+        width: 84px;
+        height: 84px;
+        border-radius: 20px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+        background: var(--surface);
       }
 
-      .project-card.deprecated .project-image {
-        filter: grayscale(100%);
-        opacity: 0.6;
-      }
-
-      .project-card.deprecated .project-title,
-      .project-card.deprecated .project-description {
-        color: var(--color-gray-500);
-      }
-
-      .deprecated-badge {
-        position: absolute;
-        top: var(--spacing-4);
-        right: var(--spacing-4);
-        background-color: var(--color-gray-500);
-        color: var(--color-white);
-        font-size: 0.7rem;
-        font-weight: 600;
-        padding: 4px 8px;
-        border-radius: var(--border-radius-sm);
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .project-image {
-        width: 100%;
-        height: 200px;
+      .project-icon.contain {
         object-fit: contain;
-        border-radius: var(--border-radius);
-        margin-bottom: var(--spacing-6);
-        background-color: var(--color-white);
-        padding: var(--spacing-4);
+        padding: 14px;
+      }
+
+      .project-body {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
       }
 
       .project-title {
-        font-size: var(--font-size-xl);
-        font-weight: var(--font-weight-semibold);
-        color: var(--color-black);
-        margin-bottom: var(--spacing-3);
-        line-height: var(--line-height-snug);
+        font-size: 1.0625rem;
+        font-weight: 700;
+        letter-spacing: -0.015em;
+        color: var(--ink);
+        line-height: 1.35;
+        margin-bottom: 0.375rem;
+        padding-right: 1.75rem;
       }
 
       .project-description {
-        font-size: var(--font-size-base);
-        color: var(--color-gray-600);
-        line-height: var(--line-height-relaxed);
-        margin-bottom: var(--spacing-6);
+        font-size: 0.875rem;
+        color: var(--ink-2);
+        line-height: 1.55;
+        margin-bottom: 0.875rem;
         flex-grow: 1;
+      }
+
+      .project-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-top: auto;
+      }
+
+      .project-tag {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.625rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-2);
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        padding: 0.1875rem 0.625rem;
+        white-space: nowrap;
       }
 
       .project-link {
         display: inline-flex;
         align-items: center;
-        gap: var(--spacing-2);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-medium);
-        color: var(--color-primary);
-        text-decoration: none;
-        transition: all 0.2s ease;
-        margin-top: auto;
-      }
-
-      .project-link:hover {
-        gap: var(--spacing-3);
+        gap: 0.3125rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--accent);
+        white-space: nowrap;
       }
 
       .project-link-arrow {
-        transition: transform 0.2s ease;
+        transition: transform 0.18s ease;
       }
 
-      .project-link:hover .project-link-arrow {
-        transform: translateX(4px);
+      .project-card:hover .project-link-arrow {
+        transform: translate(2px, -2px);
       }
 
-      /* Footer */
+      /* ---------- Mission ---------- */
+      .mission {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+
+      .mission-text {
+        font-size: clamp(1.25rem, 3vw, 1.625rem);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 1.5;
+        color: var(--ink);
+        max-width: 46rem;
+        margin-bottom: 0;
+      }
+
+      .mission-text .accent {
+        color: var(--accent);
+      }
+
+      /* ---------- Deprecated ---------- */
+      .archive {
+        background: var(--bg-muted);
+      }
+
+      .deprecated-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 1rem;
+      }
+
+      .deprecated-card {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 1rem 1.25rem;
+        border: 1px dashed var(--line-strong);
+        border-radius: 0.875rem;
+        opacity: 0.65;
+      }
+
+      .deprecated-card .project-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+        filter: grayscale(1);
+      }
+
+      .deprecated-name {
+        font-size: 0.9375rem;
+        font-weight: 600;
+        color: var(--ink-2);
+      }
+
+      .deprecated-badge {
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 0.625rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        padding: 0.125rem 0.5rem;
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      /* ---------- Footer ---------- */
       .footer {
-        padding: var(--spacing-16) var(--spacing-6);
-        background-color: var(--color-white);
-        border-top: 1px solid var(--color-gray-200);
-        text-align: center;
+        padding: 3rem 1.5rem;
+        border-top: 1px solid var(--line);
       }
 
       .footer-container {
-        max-width: 800px;
+        max-width: 1080px;
         margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
       }
 
       .footer-text {
-        font-size: var(--font-size-sm);
-        color: var(--color-gray-500);
-        margin-bottom: var(--spacing-2);
+        font-size: 0.8125rem;
+        color: var(--ink-footer);
       }
 
       .footer-link {
-        color: var(--color-gray-600);
+        color: var(--accent-build);
         text-decoration: none;
-        transition: color 0.2s ease;
       }
 
       .footer-link:hover {
-        color: var(--color-black);
+        text-decoration: underline;
+        text-underline-offset: 4px;
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .nav-container {
-          padding: var(--spacing-3) var(--spacing-4);
-        }
-
-        .nav-menu {
-          display: none;
-        }
-
-        .hero {
-          padding: var(--spacing-24) var(--spacing-4) var(--spacing-16);
-        }
-
-        .mission {
-          padding: var(--spacing-16) var(--spacing-4);
-        }
-
-        .projects {
-          padding: var(--spacing-16) var(--spacing-4);
-        }
-
-        .projects-grid {
-          grid-template-columns: 1fr;
-          gap: var(--spacing-6);
-        }
-
-        .project-card {
-          padding: var(--spacing-6);
-        }
-
-        .footer {
-          padding: var(--spacing-12) var(--spacing-4);
-        }
-      }
-
-      /* Animations */
+      /* ---------- Animations ---------- */
       @keyframes fadeInUp {
         from {
           opacity: 0;
-          transform: translateY(20px);
+          transform: translateY(16px);
         }
         to {
           opacity: 1;
@@ -495,21 +562,70 @@
         }
       }
 
-      .animate-fade-in-up {
-        animation: fadeInUp 0.6s ease-out forwards;
+      .reveal {
+        opacity: 0;
       }
 
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
+      .reveal.visible {
+        animation: fadeInUp 0.5s ease-out forwards;
       }
 
-      /* Focus states for accessibility */
-      .hero-cta:focus,
-      .project-card:focus,
-      .nav-link:focus {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+        }
+        .reveal.visible {
+          animation: none;
+        }
+        .project-card,
+        .hero-cta,
+        .project-link-arrow {
+          transition: none;
+        }
+      }
+
+      /* ---------- Focus ---------- */
+      a:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 768px) {
+        .nav-menu {
+          gap: 1.125rem;
+        }
+
+        .nav-link:not(.build) {
+          display: none;
+        }
+
+        .hero {
+          padding: 4rem 1.25rem 3.5rem;
+        }
+
+        .hero-stat {
+          padding-right: 1.5rem;
+          margin-right: 1.5rem;
+        }
+
+        .section {
+          padding: 3.5rem 1.25rem;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-icon {
+          width: 68px;
+          height: 68px;
+          border-radius: 16px;
+        }
       }
     </style>
   </head>
@@ -517,453 +633,624 @@
     <!-- Navigation -->
     <nav class="nav">
       <div class="nav-container">
-        <a href="#" class="nav-logo">
-          HEG
-          <span class="nav-subtitle">HYPERENGINEERINGGROUP</span>
+        <a href="#top" class="nav-logo">
+          <span class="nav-logo-mark">HEG</span>
+          <span class="nav-logo-sub">Hyper Engineering Group</span>
         </a>
         <div class="nav-menu">
-          <a href="#mission" class="nav-link">Mission</a>
           <a href="#projects" class="nav-link">Projects</a>
-          <a href="https://bit.heg.wtf" class="nav-link" style="color: #667eea"
-            >#buildinpublic</a
-          >
+          <a href="#opensource" class="nav-link">Open Source</a>
+          <a href="#mission" class="nav-link">Mission</a>
+          <a href="https://bit.heg.wtf" class="nav-link build">#buildinpublic</a>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Hero -->
+    <header id="top" class="hero">
       <div class="hero-container">
-        <h1 class="hero-title animate-fade-in-up">
-          Moving quickly<br />
-          Staying small
+        <p class="hero-eyebrow mono">Hyper Engineering Group</p>
+        <h1 class="hero-title">
+          Moving quickly.<br />
+          Staying small.<br />
+          <span class="accent">Avoiding over-engineering.</span>
         </h1>
-        <p class="hero-subtitle animate-fade-in-up">
-          We craft digital experiences that matter, building the future with
-          precision and purpose.
+        <p class="hero-subtitle">
+          We ship small, sharp products — fast. No bloat, no over-engineering.
+          Just what users actually need.
         </p>
-        <a href="#projects" class="hero-cta animate-fade-in-up">
-          Explore our work
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
-        </a>
+        <div class="hero-actions">
+          <a href="#projects" class="hero-cta">
+            Explore projects
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+          </a>
+          <a href="https://bit.heg.wtf" class="hero-cta-secondary mono">
+            #buildinpublic →
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">14</div>
+            <div class="hero-stat-label mono">Active Projects</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">iOS · Web</div>
+            <div class="hero-stat-label mono">Platforms</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">1</div>
+            <div class="hero-stat-label mono">Team, Tiny</div>
+          </div>
+        </div>
       </div>
-    </section>
+    </header>
 
-    <!-- Mission Section -->
-    <section id="mission" class="mission">
-      <div class="mission-container">
-        <h2 class="mission-title">Our Mission</h2>
-        <p class="mission-text">
-          Our ultimate goal is to create a sustainable engineering world that
-          aligns with HEG's ideals. We believe in moving fast, staying lean, and
-          building solutions that truly serve our users.
-        </p>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-      <div class="projects-container">
-        <h2 class="projects-title">Our Projects</h2>
+    <!-- Projects -->
+    <section id="projects" class="section projects">
+      <div class="section-container">
+        <p class="section-eyebrow mono">01 — Work</p>
+        <h2 class="section-title">Projects</h2>
         <div class="projects-grid">
-          <a href="https://localmap.cc" class="project-card">
-            <img src="./localmap.png" alt="동네지도" class="project-image" />
-            <h3 class="project-title">LocalMap - 동네지도</h3>
-            <p class="project-description">
-              The real neighborhood map that Naver Maps doesn't have - discover
-              authentic local spots and hidden gems in your area.
-            </p>
-            <div class="project-link">
-              Explore Local
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+          <a href="https://driven.heg.wtf" class="project-card reveal">
+            <img
+              src="./driverpub.png"
+              alt="Driven app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+            />
+            <div class="project-body">
+              <h3 class="project-title">Driven - Drive Course Curator</h3>
+              <p class="project-description">
+                The ultimate driving course recommendation service for car
+                enthusiasts — discover scenic routes and perfect drives.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Web</span>
+                <span class="project-link">
+                  Visit
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
-          <a href="https://driven.heg.wtf" class="project-card">
-            <img src="./driverpub.png" alt="드리븐" class="project-image" />
-            <h3 class="project-title">드리븐 - 드라이브코스 추천</h3>
-            <p class="project-description">
-              The ultimate driving course recommendation service for car
-              enthusiasts - discover scenic routes and perfect driving
-              experiences 🚗
-            </p>
-            <div class="project-link">
-              Start Your Journey
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+          <a
+            href="https://apps.apple.com/us/app/creaturex-catch-collect/id6775161470"
+            class="project-card reveal"
+          >
+            <img
+              src="./creaturex.jpg"
+              alt="CreatureX app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+            />
+            <div class="project-body">
+              <h3 class="project-title">CreatureX - Catch & Collect</h3>
+              <p class="project-description">
+                Snap a photo and AI identifies the species. Catch, collect, and
+                complete your own creature dex.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
-          <a href="https://tools.heg.wtf" class="project-card">
-            <img src="./tools.png" alt="tools" class="project-image" />
-            <h3 class="project-title">Tools</h3>
-            <p class="project-description">
-              A comprehensive collection of useful web tools designed to enhance
-              productivity and streamline your workflow. From utilities to
-              converters, everything you need in one place.
-            </p>
-            <div class="project-link">
-              Explore Tools
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+          <a href="https://localmap.cc" class="project-card reveal">
+            <img
+              src="./localmap.png"
+              alt="LocalMap app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">LocalMap</h3>
+              <p class="project-description">
+                The real neighborhood map that Naver Maps doesn't have —
+                discover authentic local spots and hidden gems in your area.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Web</span>
+                <span class="project-link">
+                  Visit
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <a href="https://tools.heg.wtf" class="project-card reveal">
+            <img
+              src="./tools.png"
+              alt="Tools icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">Tools</h3>
+              <p class="project-description">
+                A collection of useful web tools designed to enhance
+                productivity — from utilities to converters, all in one place.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Web</span>
+                <span class="project-link">
+                  Visit
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
           <a
             href="https://apps.apple.com/us/app/%EC%95%BD%EB%B4%89%ED%88%AC-ai-%EC%95%BD%EB%B4%89%ED%88%AC-%EA%B4%80%EB%A6%AC-%EC%95%B1/id6757094370"
-            class="project-card"
+            class="project-card reveal"
           >
-            <img src="./drugpackage.png" alt="약봉투" class="project-image" />
-            <h3 class="project-title">약봉투 - AI 약봉투 관리 앱</h3>
-            <p class="project-description">
-              AI-powered medication management app that provides detailed drug
-              information and interaction checking to help you safely manage
-              your prescriptions.
-            </p>
-            <div class="project-link">
-              Download Now
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <img
+              src="./drugpackage.png"
+              alt="Yakbongtu app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">약봉투 - AI Medication Manager</h3>
+              <p class="project-description">
+                AI-powered medication management with detailed drug information
+                and interaction checking for safe prescriptions.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
           <a
             href="https://apps.apple.com/us/app/word-defense-drop-the-word/id6757675798"
-            class="project-card"
+            class="project-card reveal"
           >
             <img
               src="./worddefense.png"
-              alt="Word Defense"
-              class="project-image"
+              alt="Word Defense app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
             />
-            <h3 class="project-title">Word Defense - Drop the Word</h3>
-            <p class="project-description">
-              An addictive typing game where you defend against falling English
-              words by typing their Korean meanings. Test your vocabulary and
-              typing speed!
-            </p>
-            <div class="project-link">
-              Play Now
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <div class="project-body">
+              <h3 class="project-title">Word Defense - Drop the Word</h3>
+              <p class="project-description">
+                An addictive typing game — defend against falling English words
+                by typing their Korean meanings.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS · Game</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
-          <a href="https://zvc.heg.wtf" class="project-card">
-            <img src="./zvc.png" alt="ZVC" class="project-image" />
-            <h3 class="project-title">ZVC - Static Site Generator</h3>
-            <p class="project-description">
-              A Jinja2-powered static site generator built for Python
-              developers. Create beautiful GitHub Pages sites without JavaScript
-              tooling overhead.
-            </p>
-            <div class="project-link">
-              Learn More
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-            </div>
-          </a>
-
-          <a href="https://base.heg.wtf" class="project-card">
-            <img src="./base.png" alt="base" class="project-image" />
-            <h3 class="project-title">base - Less, Done</h3>
-            <p class="project-description">
-              A refined productivity app for those who demand excellence. Built
-              by a CTO who tried every other productivity tool and found them
-              all lacking.
-            </p>
-            <div class="project-link">
-              $99.99 Lifetime
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+          <a href="https://base.heg.wtf" class="project-card reveal">
+            <img
+              src="./base.png"
+              alt="base app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">base - Less, Done</h3>
+              <p class="project-description">
+                A refined productivity app for those who demand excellence.
+                Built by a CTO who tried every other tool and found them all
+                lacking.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Web</span>
+                <span class="project-link">
+                  $99.99 Lifetime
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
           <a
             href="https://apps.apple.com/us/app/%EB%A7%88%EB%B8%94%EB%85%B8%ED%8A%B8-%EB%B6%80%EB%A3%A8%EB%A7%88%EB%B8%94-%EA%B2%8C%EC%9E%84-%EA%B8%B0%EB%A1%9D/id6757602728"
-            class="project-card"
+            class="project-card reveal"
           >
-            <img src="./marblenote.png" alt="마블노트" class="project-image" />
-            <h3 class="project-title">마블노트 - 부루마블 게임 기록</h3>
-            <p class="project-description">
-              가족들과 부루마블을 더 재미있게! 땅 소유권과 건물 건설을
-              타임라인으로 기록하고 관리하는 게임 보조 앱입니다.
-            </p>
-            <div class="project-link">
-              지금 다운로드
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <img
+              src="./marblenote.png"
+              alt="MarbleNote app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">마블노트 - Board Game Logger</h3>
+              <p class="project-description">
+                Make Blue Marble game nights more fun — track land ownership
+                and building construction on a timeline.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
-          <a href="https://hanwoo.heg.wtf" class="project-card">
-            <img src="./hanwoo.png" alt="한우찾기" class="project-image" />
-            <h3 class="project-title">한우찾기 - 통합한우목장관리 앱</h3>
-            <p class="project-description">
-              한우농가를 위한 스마트 이력조회 앱. 이력 조회, 시세 확인, 개체
-              관리 등 목장 운영에 필요한 모든 기능을 제공합니다.
-            </p>
-            <div class="project-link">
-              자세히 보기
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+          <a href="https://hanwoo.heg.wtf" class="project-card reveal">
+            <img
+              src="./hanwoo.png"
+              alt="Hanwoo Finder app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">한우찾기 - Hanwoo Farm Manager</h3>
+              <p class="project-description">
+                Smart cattle-history app for Hanwoo farmers — trace records,
+                market prices, and herd management in one place.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  Learn More
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
           <a
             href="https://apps.apple.com/kr/app/%EA%B3%B5%ED%95%AD%EC%A3%BC%EC%B0%A8-%EC%8B%A4%EC%8B%9C%EA%B0%84-%EA%B3%B5%ED%95%AD-%EC%A3%BC%EC%B0%A8-%ED%98%84%ED%99%A9/id6758258917"
-            class="project-card"
+            class="project-card reveal"
           >
             <img
               src="./airport-parking.png"
-              alt="공항주차"
-              class="project-image"
+              alt="Airport Parking app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
             />
-            <h3 class="project-title">공항주차 - 실시간 공항 주차 현황</h3>
-            <p class="project-description">
-              공항 출발 전 주차 걱정 끝! 인천, 김포, 부산, 제주, 청주 공항의
-              주차장 현황을 실시간으로 확인하세요.
-            </p>
-            <div class="project-link">
-              지금 다운로드
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <div class="project-body">
+              <h3 class="project-title">공항주차 - Live Airport Parking</h3>
+              <p class="project-description">
+                Real-time parking availability for Incheon, Gimpo, Busan, Jeju,
+                and Cheongju airports — check before you leave.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
 
           <a
             href="https://apps.apple.com/us/app/alive-still-here/id6757941243"
-            class="project-card"
+            class="project-card reveal"
           >
-            <img src="./alive.png" alt="Alive" class="project-image" />
-            <h3 class="project-title">Alive - Still Here</h3>
-            <p class="project-description">
-              오늘도 살아있음을 확인하는 가장 단순한 방법. 매일 "나는
-              살아있다"를 누르고, 다른 누군가도 살아있음을 느끼세요.
-            </p>
-            <div class="project-link">
-              지금 다운로드
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <img
+              src="./alive.png"
+              alt="Alive app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">Alive - Still Here</h3>
+              <p class="project-description">
+                The simplest way to confirm you're still here. Tap "I'm alive"
+                every day — and feel that someone else is, too.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
-          <a href="https://racing-game.heg.wtf" class="project-card">
+
+          <a href="https://racing-game.heg.wtf" class="project-card reveal">
             <img
               src="./drift-buddy-race.jpg"
-              alt="Simple Racing Game"
-              class="project-image"
+              alt="Simple Racing Game icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
             />
-            <h3 class="project-title">Simple Racing Game</h3>
-            <p class="project-description">
-              이스탄불 파크 서킷에서 펼쳐지는 3D 레이싱 게임. AI 상대와 드리프트
-              & 부스트 메커닉으로 실시간 경주를 즐기세요.
-            </p>
-            <div class="project-link">
-              플레이하기
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <div class="project-body">
+              <h3 class="project-title">Simple Racing Game</h3>
+              <p class="project-description">
+                A 3D racing game set on Istanbul Park circuit. Race AI rivals
+                in real time with drift & boost mechanics.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">Web · Game</span>
+                <span class="project-link">
+                  Play Now
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
-          <a
-            href="https://apps.apple.com/us/app/creaturex-catch-collect/id6775161470"
-            class="project-card"
-          >
-            <img
-              src="./creaturex.jpg"
-              alt="CreatureX"
-              class="project-image"
-            />
-            <h3 class="project-title">CreatureX - Catch & Collect</h3>
-            <p class="project-description">
-              생물을 촬영하면 AI가 종을 인식해 줍니다. 나만의 생물 도감을
-              수집하고 완성하세요.
-            </p>
-            <div class="project-link">
-              지금 다운로드
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
-            </div>
-          </a>
+
           <a
             href="https://apps.apple.com/us/app/%EC%A0%9C%EC%A3%BC%EA%B3%B5%ED%95%AD%EC%A3%BC%EC%B0%A8-%EC%8B%A4%EC%8B%9C%EA%B0%84%ED%98%84%ED%99%A9/id6793362945"
-            class="project-card"
+            class="project-card reveal"
           >
             <img
               src="./jeju-parking.png"
-              alt="제주공항주차"
-              class="project-image"
+              alt="Jeju Airport Parking app icon"
+              class="project-icon"
+              width="84"
+              height="84"
+              loading="lazy"
             />
-            <h3 class="project-title">제주공항주차 - 실시간 주차 현황</h3>
-            <p class="project-description">
-              제주국제공항 P1(단기) · P2(장기) 주차장의 실시간 빈자리 현황과
-              예상 주차요금을 확인하세요.
-            </p>
-            <div class="project-link">
-              지금 다운로드
-              <svg
-                class="project-link-arrow"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 17L17 7M17 7H7M17 7V17" />
-              </svg>
+            <div class="project-body">
+              <h3 class="project-title">제주공항주차 - Jeju Airport Parking</h3>
+              <p class="project-description">
+                Live availability for Jeju Airport P1 (short-term) & P2
+                (long-term) lots, with estimated parking fees.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">iOS</span>
+                <span class="project-link">
+                  App Store
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
             </div>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Deprecated Section -->
-    <section
-      id="deprecated"
-      class="projects"
-      style="background-color: var(--color-gray-100)"
-    >
-      <div class="projects-container">
-        <h2 class="projects-title" style="color: var(--color-gray-500)">
-          Deprecated
-        </h2>
+    <!-- Open Source -->
+    <section id="opensource" class="section">
+      <div class="section-container">
+        <p class="section-eyebrow mono">02 — Open Source</p>
+        <h2 class="section-title">Open Source</h2>
         <div class="projects-grid">
-          <div class="project-card deprecated">
+          <a href="https://zvc.heg.wtf" class="project-card reveal">
+            <img
+              src="./zvc.png"
+              alt="ZVC logo"
+              class="project-icon contain"
+              width="84"
+              height="84"
+              loading="lazy"
+            />
+            <div class="project-body">
+              <h3 class="project-title">ZVC - Static Site Generator</h3>
+              <p class="project-description">
+                A Jinja2-powered static site generator for Python developers.
+                Build GitHub Pages sites without JavaScript tooling overhead.
+              </p>
+              <div class="project-meta">
+                <span class="project-tag">OSS</span>
+                <span class="project-link">
+                  Learn More
+                  <svg
+                    class="project-link-arrow"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section id="mission" class="section mission">
+      <div class="section-container">
+        <p class="section-eyebrow mono">03 — Mission</p>
+        <p class="mission-text reveal">
+          We believe in sustainable engineering —
+          <span class="accent">moving fast, staying lean,</span>
+          and building only what users truly need. Ship, learn, repeat.
+        </p>
+      </div>
+    </section>
+
+    <!-- Deprecated -->
+    <section id="deprecated" class="section archive">
+      <div class="section-container">
+        <p class="section-eyebrow mono">04 — Archive</p>
+        <h2 class="section-title">Retired</h2>
+        <div class="deprecated-list">
+          <div class="deprecated-card">
+            <img
+              src="./1pick_logo.png"
+              alt="1Pick logo"
+              class="project-icon"
+              width="52"
+              height="52"
+              loading="lazy"
+            />
+            <span class="deprecated-name">1Pick - Restaurant Discovery</span>
             <span class="deprecated-badge">Deprecated</span>
-            <img src="./1pick_logo.png" alt="원픽" class="project-image" />
-            <h3 class="project-title">1Pick - Restaurant Discovery</h3>
-            <p class="project-description">
-              Redefining the way you discover Seoul's best restaurants, solving
-              the challenge of finding great spots with AI-powered
-              recommendations.
-            </p>
           </div>
         </div>
       </div>
@@ -973,14 +1260,10 @@
     <footer class="footer">
       <div class="footer-container">
         <p class="footer-text">
-          ©
-          <script>
-            document.write(new Date().getFullYear());
-          </script>
-          HEG. Crafted with precision and purpose.
+          © <span id="year"></span> HEG. Crafted with precision and purpose.
         </p>
-        <p class="footer-text">
-          <span style="color: #667eea">#buildinpublic</span> here 👉
+        <p class="footer-text mono">
+          #buildinpublic →
           <a href="https://bit.heg.wtf" class="footer-link">bit.heg.wtf</a>
         </p>
       </div>
@@ -988,57 +1271,33 @@
 
     <!-- JavaScript -->
     <script>
-      // Smooth scroll for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (prefersReducedMotion) {
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => el.classList.add("visible"));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
             });
-          }
-        });
-      });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+        );
 
-      // Add scroll animation
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in-up");
-          }
-        });
-      }, observerOptions);
-
-      // Observe elements for animation
-      document
-        .querySelectorAll(".project-card, .mission-title, .mission-text")
-        .forEach((el) => {
-          observer.observe(el);
-        });
-
-      // Navbar scroll effect
-      let lastScrollTop = 0;
-      const navbar = document.querySelector(".nav");
-
-      window.addEventListener("scroll", () => {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-          navbar.style.transform = "translateY(-100%)";
-        } else {
-          navbar.style.transform = "translateY(0)";
-        }
-
-        lastScrollTop = scrollTop;
-      });
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => observer.observe(el));
+      }
     </script>
 
     <!-- Google tag (gtag.js) -->
