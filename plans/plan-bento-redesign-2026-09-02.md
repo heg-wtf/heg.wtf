@@ -1,6 +1,6 @@
 # Plan: heg.wtf · bit 벤토 리디자인
 - date: 2026-09-02
-- status: in-progress
+- status: done
 - author: claude
 - approved-by: ash84 (시안 H 승인, 2026-09-02)
 
@@ -33,15 +33,15 @@
 - [x] Step 3: `docs/index.html` 재작성 — 토큰(라이트/다크), Outfit, nav, hero, 벤토(13 제품 + 통계 + 링크 타일), Open Source, Mission, Retired, footer, reveal/hover 모션, reduced-motion
 - [x] Step 4: `Makefile`(help/format/lint/test/server) + `scripts/check_site.py`(자산 참조·앵커·필수 meta 검증) + `tests/`. 검증에서 드러난 `privacy-policy.html` meta description 누락 1건 보완
 - [x] Step 5: 헤드리스 Chrome으로 라이트/다크/모바일 렌더 확인
-- [ ] Step 6: README 갱신, 커밋, PR
+- [x] Step 6: README 갱신, 커밋, PR
 
 ### bit
-- [ ] Step 7: 브랜치 `feat/bento-redesign`
-- [ ] Step 8: `themes/bit/assets/style.css` 재작성 — heg.wtf와 동일 토큰, Outfit + Bitcount 워드마크, 한국어 본문 타이포
-- [ ] Step 9: `themes/bit/index.html` — nav(heg.wtf 링크), 통계 타일(글 수·첫 글·최근 글), 글 카드 그리드(최신 글 feature), JSON-LD URL을 `post.link`로 수정
-- [ ] Step 10: `themes/bit/post.html` — 동일 nav, 본문 타이포, 태그, 자산 경로 절대화(`/assets/…`), canonical/og:url 수정
-- [ ] Step 11: `Makefile` 규칙 반영(.PHONY/help/lint/test) + `scripts/check_site.py` + `tests/`
-- [ ] Step 12: `make build` → `docs/` 재생성, 헤드리스 Chrome 확인, CLAUDE.md 갱신, 커밋, PR
+- [x] Step 7: 브랜치 `feat/bento-redesign`
+- [x] Step 8: `themes/bit/assets/style.css` 재작성 — heg.wtf와 동일 토큰, Outfit + Bitcount 워드마크, 한국어 본문 타이포
+- [x] Step 9: `themes/bit/index.html` — nav(heg.wtf 링크), 통계 타일(글 수·첫 글·최근 글), 글 카드 그리드(최신 글 feature), JSON-LD URL을 `post.link`로 수정
+- [x] Step 10: `themes/bit/post.html` — 동일 nav, 본문 타이포, 태그, 자산 경로 절대화(`/assets/…`), canonical/og:url 수정
+- [x] Step 11: `Makefile` 규칙 반영(.PHONY/help/lint/test) + `scripts/check_site.py` + `tests/`
+- [x] Step 12: `make build` → `docs/` 재생성, 헤드리스 Chrome 확인, CLAUDE.md 갱신, 커밋, PR
 
 ## 5. 테스트 계획
 **단위 테스트 (`scripts/check_site.py`):**
@@ -52,15 +52,20 @@
 
 **통합 테스트:**
 - [x] heg.wtf: `make lint && make test` 통과, 헤드리스 렌더에서 라이트/다크 모두 텍스트 대비 정상, 375px에서 가로 스크롤 없음
-- [ ] bit: `make build` 성공, `docs/index.html` 카드 수 = `contents/` 글 수(39), 개별 페이지에서 `/assets/style.css` 로드, `make lint` 통과
-- [ ] 두 사이트 모두 `#buildinpublic` ↔ `heg.wtf` 상호 링크 정상
+- [x] bit: `make build` 성공, `docs/index.html` 카드 수 = `contents/` 글 수(39), 개별 페이지에서 `/assets/style.css` 로드, `make lint` 통과
+- [x] 두 사이트 모두 `#buildinpublic` ↔ `heg.wtf` 상호 링크 정상
 
 ## 6. 사이드 이펙트
 - **아이콘 해상도 축소**: 다른 사이트가 `https://heg.wtf/<icon>.png`를 핫링크했다면 224px로 보임. `logo.png`(OG)는 원본 유지 → 대응 완료
 - **`docs/style.css` 삭제**: 어떤 HTML도 참조하지 않음(grep 확인) → 해당 없음
 - **bit 홈 전문 인라인 제거**: 홈 크롤 시 본문이 요약만 노출. 개별 페이지가 이미 생성·색인 가능하고 JSON-LD가 개별 URL을 가리키므로 SEO 영향 제한적 → 대응 완료
-- **bit 자동 포스트 파이프라인**: `make build` 인터페이스 유지, `contents/`·`scripts/` 미변경 → 해당 없음
+- **bit 자동 포스트 파이프라인**: `make build` 인터페이스 유지, `scripts/auto-post.sh` 미변경 → 해당 없음
+- **bit 콘텐츠 수정**: 250815·260302 두 글의 `<img src>`가 예전 인라인 홈에서만 풀리던 상대경로였음. 절대경로로 수정(본문 텍스트 불변) → 대응 완료
 - 하위 호환: URL 변경 없음. 마이그레이션 없음.
+
+## 결과
+- heg.wtf: https://github.com/heg-wtf/heg.wtf/pull/5
+- bit: https://github.com/heg-wtf/bit/pull/2
 
 ## 7. 보안 검토
 - OWASP Top 10: 정적 HTML, 사용자 입력 없음, 서버 코드 없음 → 해당 없음
